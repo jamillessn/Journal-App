@@ -1,0 +1,2 @@
+module JournalAppHelper
+end
