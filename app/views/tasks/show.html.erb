@@ -1,0 +1,10 @@
+
+<h2><%= @task.title%></h2>
+<p><%= @task.desc%></p>
+
+<div>
+    <%= link_to "Back to tasks list", tasks_path %> |
+    <%= link_to "Edit this article", edit_task_path %> 
+
+    <%= button_to "Destroy this article", @task, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+</div>

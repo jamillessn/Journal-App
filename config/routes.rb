@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # Defines the root path route ("/")
-  root to: "journal_app#index"
+  root 'tasks#index'
+
+  resources :tasks
+  resources :category
+  
+
+  # task_index /task --> task#index
+  # new_task /task/new --> task#create
+  # new_task /task/id --> task#edit
+
 end

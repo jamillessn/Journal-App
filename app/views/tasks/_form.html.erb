@@ -1,0 +1,59 @@
+
+<%= form_with model: @task do |form| %>
+
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+    <div>
+      <p>
+        <%= form.label :user_id %> <br>
+        <%= form.text_field :user_id, class: "w-full" %>
+      </p>
+    </div> 
+
+    
+    <div>
+      <p>
+        <%= form.label :title %> <br>
+        <%= form.text_field :title, class: "w-full" %>
+      </p>
+    </div>
+
+    <div>
+      <p>
+        <%= form.label :category %> <br>
+        <%= form.text_field :category, class: "w-full" %>
+      </p>
+    </div>
+
+    <div>
+      <%= form.label :date %> <br> 
+      <%= form.date_field :date, class: "w-full date-picker", required: true, pattern: '\d{4}-\d{2}-\d{2}', title: 'Date must be in yyyy-mm-dd format' %> 
+      </p> 
+    </div>
+
+    <div>
+      <p>
+        <%= form.label :desc %> <br>
+        <%= form.text_area :desc, class: "w-full" %>
+      </p>
+    </div>
+    <p>
+    <%= form.button 'Submit', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </p>
+
+  <% if @task.errors.any? %>
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+        <p class="font-bold"><%= pluralize(task.errors.count, "error") %>  prohibited this post from being saved:</p>
+      <ul class="list-none">
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  </div>
+  </div>
+
+    
+<% end %>
