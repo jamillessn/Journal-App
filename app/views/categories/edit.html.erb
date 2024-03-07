@@ -1,0 +1,13 @@
+
+<div class="prose">
+<h1>Edit Category</h1>
+<%= render "form", task: @category %>
+
+<div>
+    <%= link_to "Show this category", @category %> <!-- /articles/2 -->
+    <%= link_to "Back to category list", tasks_path %> <!-- /articles-->
+    </div>
+
+<%= button_to "Delete", @category, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+
+</div>

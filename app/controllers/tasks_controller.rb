@@ -1,5 +1,19 @@
 class TasksController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_task, only: [:show, :edit, :update, :destroy]
+
+    def today
+        @tasks_for_today = current_user.tasks.where(date: Date.current)
+        current_user.categories.find(:id)
+    end
+
+    def future_tasks
+        @future_tasks = current_user.tasks.where(date: tomorrow..)
+    end
+
+    def tomorrow
+        today + 1
+    end
 
     def index
         @tasks = Task.all
@@ -30,12 +44,15 @@ class TasksController < ApplicationController
 
     def update
         @task = Task.find(params[:id])
+        @task.date = Date.strptime(params[:task][:date], "%Y-%m-%d")
+        
+      
         if @task.update(task_params)
-            redirect_to @task, notice: "Task was successfully updated.", status: :see_other
+          redirect_to @task, notice: "Task was successfully updated.", status: :see_other
         else
-            render :edit, status: :unprocessable_entity
+          render :edit, status: :unprocessable_entity
         end
-    end
+      end
 
     def destroy
         @task = Task.find(params[:id])
@@ -46,8 +63,9 @@ class TasksController < ApplicationController
     private
 
     def task_params
-        params.require(:task).permit(:user_id, :title, :category, :desc, :date)
+      params.require(:task).permit(:user_id, :title, :category_id, :date, :desc)
     end
+    
 
     def set_task
         @task = Task.find(params[:id])
