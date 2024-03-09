@@ -1,73 +1,68 @@
 class TasksController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_category
     before_action :set_task, only: [:show, :edit, :update, :destroy]
-
-    def today
-        @tasks_for_today = current_user.tasks.where(date: Date.current)
-        current_user.categories.find(:id)
-    end
-
-    def future_tasks
-        @future_tasks = current_user.tasks.where(date: tomorrow..)
-    end
-
-    def tomorrow
-        today + 1
-    end
-
+  
     def index
-        @tasks = Task.all
+      @tasks = current_user.tasks
     end
-
+  
     def show
-        @task = Task.find_by(id: params[:id])
     end
-
+  
     def new
-        @task = Task.new
-    end
-
-    def create
-       @task = Task.create(task_params)
-       @task.date = Date.strptime(params[:task][:date], "%Y-%m-%d")
-
-       if @task.save
-            redirect_to tasks_path
-        else
-            render :new
-        end
-    end
-
-    def edit
-        @task = Task.find(params[:id])
-    end
-
-    def update
-        @task = Task.find(params[:id])
-        @task.date = Date.strptime(params[:task][:date], "%Y-%m-%d")
-        
+      @task = Task.new(user_id: current_user.id)
       
-        if @task.update(task_params)
-          redirect_to @task, notice: "Task was successfully updated.", status: :see_other
+    end
+  
+    def create
+      @task = @category.tasks.build(task_params)
+      @task.user_id = current_user.id
+      @task.category_id = @category.id
+
+      if @task.save
+        redirect_to category_tasks_path(@category), notice: "Task was successfully created."
+      else
+        render :new
+      end
+    end
+  
+    def edit
+    end
+  
+    def update
+      if @task.update(task_params)
+        redirect_to category_tasks_path(@category), notice: "Task was successfully updated."
+      else
+        render :edit
+      end
+    end
+  
+    def destroy
+      @task.destroy
+      redirect_to category_tasks_path(@category), notice: "Task was successfully deleted."
+    end
+  
+    private
+  
+    def set_category
+        if params[:category_id].present?
+          @category = current_user.categories.find(params[:category_id])
         else
-          render :edit, status: :unprocessable_entity
+          redirect_to categories_path, alert: "Category not found."
         end
       end
-
-    def destroy
-        @task = Task.find(params[:id])
-        @task.destroy!
-        redirect_to tasks_path, notice: "Task number #{@task.id} was successfully destroyed.", status: :see_other
-    end
-
-    private
-
-    def task_params
-      params.require(:task).permit(:user_id, :title, :category_id, :date, :desc)
-    end
-    
-
+  
     def set_task
-        @task = Task.find(params[:id])
+        @task = current_user.tasks.find(params[:id])
+        @task = @category.tasks.find(params[:id])
+        rescue ActiveRecord::RecordNotFound
+            redirect_to categories_path, alert: "Task not found." 
+        end
     end
-end
+  
+    def task_params
+      params.require(:task).permit(:user_id, :title, :date, :desc, :category_id)
+    end
+
+  

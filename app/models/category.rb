@@ -10,4 +10,5 @@ class Category < ApplicationRecord
   
     validates :title, presence: true, uniqueness: {scope: :user_id}
     validates :desc, presence: true
+    validates :user_id, presence:true
 end

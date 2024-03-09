@@ -1,55 +1,56 @@
 class CategoriesController < ApplicationController
     before_action :authenticate_user!
-    # before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+    before_action :set_category, only: [:show, :edit, :update, :destroy]
+  
     def index
-        @categories = Category.all
+      @categories = current_user.categories
     end
-
+  
     def show
-        @category = Category.find_by(id: params[:id])
     end
-
+  
     def new
-        @category = Category.new
+      @category = current_user.categories.build
     end
-
+  
     def create
-       @category = Category.create(category_params)
-
-       if @category.save
-            redirect_to categories_path
-        else
-            render :new
-        end
+      @category = current_user.categories.build(category_params)
+      @category.user_id = current_user.id
+  
+      if @category.save
+        redirect_to categories_path, notice: "Category was successfully created."
+      else
+        render :new
+      end
     end
-
+  
     def edit
-        @category = Category.find(params[:id])
     end
-
+  
     def update
-        @category = Category.find(params[:id])
-        if @category.update(category_params)
-            redirect_to @category, notice: "Category was successfully updated.", status: :see_other
-        else
-            render :edit, status: :unprocessable_entity
-        end
+      if @category.update(category_params)
+        redirect_to @category, notice: "Category was successfully updated."
+      else
+        render :edit
+      end
     end
-
+  
     def destroy
-        @category = Category.find(params[:id])
-        @category.destroy!
-        redirect_to categories_path, notice: "Category ' #{@category.title} ' was successfully removed.", status: :see_other
+      @category.destroy
+      redirect_to categories_path, notice: "Category was successfully deleted."
     end
-
+  
     private
-
+  
+    def set_category
+      @category = current_user.categories.find(params[:id])
+        rescue ActiveRecord::RecordNotFound
+        redirect_to categories_path, flash: { alert: "Category not found." } 
+      end
+    end
+  
     def category_params
-        params.require(:category).permit(:title,:desc,:user_id)
+      params.require(:category).permit(:title, :desc, :user_id)
     end
 
-    # def set_category
-    #     @category = Category.find(params[:id])
-    # end
-end
+  

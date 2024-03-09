@@ -3,7 +3,7 @@
 <p><%= @task.desc%></p>
 
 <div>
-    <%= link_to "Back to tasks list", tasks_path %> |
+    <%= link_to "Back to tasks list", category_tasks_path %> |
     <%= link_to "Edit this task", edit_task_path %> 
 
     <%= button_to "Remove this task", @task, method: :delete, data: {turbo_confirm: "Are you sure?"} %>

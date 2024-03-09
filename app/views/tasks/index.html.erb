@@ -2,8 +2,7 @@
 
 <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
 	<div class="m-4 w-full flex-grow p-4">
-        <h1 class="text-3xl font-bold">Today's tasks</h1><br>
-             <%= button_to "Create new task", new_task_path, method: :get, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %> 
+        <h1 class="text-3xl font-bold">All tasks</h1><br>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <% @tasks.each do |task|%>
@@ -29,9 +28,8 @@
                         <div class="mt-4 flex items-center justify-between">
                                                 
                             <!-- Edit link -->
-                            <%= link_to "Edit task", edit_task_path(task), method: :get, class: 'font-medium text-indigo-600 hover:text-indigo-500' %>
                             <!-- Delete button -->
-                            <%= button_to "Delete", task, method: :delete, data: {turbo_confirm: "Are you sure?"} %> 
+                        
                                 
                         </div>
                     </div>
