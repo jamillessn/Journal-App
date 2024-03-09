@@ -9,13 +9,6 @@
       </p>
     </div>
 
-  <!-- <div>
-      <p>
-        <%= form.label :category_id %> <br>
-        <%= form.collection_select :category_id, current_user.categories, :id, :title, { prompt: "Select a category" }, class: "w-full" %>
-      </p>
-    </div> -->
-
     <div>
       <%= form.label "Due date" %> <br> 
       <%= form.date_field :date, class: "w-full date-picker", required: true, pattern: '\d{4}-\d{2}-\d{2}', title: 'Date must be in yyyy-mm-dd format' %> 

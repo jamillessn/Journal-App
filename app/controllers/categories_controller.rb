@@ -45,12 +45,10 @@ class CategoriesController < ApplicationController
     def set_category
       @category = current_user.categories.find(params[:id])
         rescue ActiveRecord::RecordNotFound
-        redirect_to categories_path, flash: { alert: "Category not found." } 
-      end
+        redirect_to categories_path,  alert: "Category not found."  
+        end
     end
   
     def category_params
       params.require(:category).permit(:title, :desc, :user_id)
     end
-
-  

@@ -4,6 +4,10 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
   
     def index
+      @tasks = @category.tasks
+    end
+
+    def all_tasks
       @tasks = current_user.tasks
     end
   
@@ -46,23 +50,21 @@ class TasksController < ApplicationController
     private
   
     def set_category
+      
         if params[:category_id].present?
           @category = current_user.categories.find(params[:category_id])
-        else
-          redirect_to categories_path, alert: "Category not found."
         end
       end
   
     def set_task
-        @task = current_user.tasks.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
         @task = @category.tasks.find(params[:id])
-        rescue ActiveRecord::RecordNotFound
-            redirect_to categories_path, alert: "Task not found." 
-        end
+        # rescue ActiveRecord::RecordNotFound
+        #     redirect_to categories_path, alert: "Task not found." 
+        # end
     end
   
     def task_params
       params.require(:task).permit(:user_id, :title, :date, :desc, :category_id)
     end
-
-  
+  end
