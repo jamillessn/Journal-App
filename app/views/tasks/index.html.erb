@@ -8,8 +8,9 @@
       <% if @tasks.present? %>
         <% @tasks.each do |task| %>
         <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-            <h2 class="text-xl font-bold hover:text-red-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
-            <p class="font-sans text-base text-gray-600">Description: <%= task.desc %></p>
+            <h2 class="text-xl font-bold"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
+            <p class="font-sans font-bold text-sm"><%= task.date %></p>
+            <p class="font-sans text-base text-gray-600 italic text-amber-600"><%= task.desc %></p>
 
             <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-primary" %>
         </div>
