@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get '/tasks', to: 'tasks#index'
 
+  resources :tasks do
+    get 'today', on: :collection
+  end
+
   resources :categories do
     resources :tasks
     end

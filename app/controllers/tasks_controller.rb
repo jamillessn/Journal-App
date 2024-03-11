@@ -4,15 +4,9 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
   
     def index
-      # @tasks = current_user.tasks
-
-      # Set @category to some meaningful value or leave it unset
-      # For example, you might want to set it to the first category or the default category
+      @tasks = current_user.tasks
       @category = current_user.categories.first
-      
-      # Retrieve tasks related to the @category or all tasks if @category is not set
-      @tasks = @category.present? ? @category.tasks : current_user.tasks
-        end
+    end
   
     def show
       @task = Task.find(params[:id])
@@ -57,6 +51,10 @@ class TasksController < ApplicationController
     def destroy
       @task.destroy
       redirect_to category_tasks_path(@category), notice: "Task was successfully deleted."
+    end
+
+    def today
+      @tasks_today = current_user.tasks.where(date: Date.today)
     end
   
     private

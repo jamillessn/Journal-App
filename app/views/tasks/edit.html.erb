@@ -1,6 +1,5 @@
 
 <div class="prose">
-<h1>Editing task</h1>
 <%= form_with(model: [@category, @task]) do |f| %>
         <div>
           <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-gray-900"><%= @task.category.title %></h1>
@@ -21,10 +20,9 @@
         <% end %>
 
 <div>
-    <%# <%= link_to "Show this task", @task %>  
     <%= link_to "Back to tasks list", tasks_path %> 
     </div>
 
-<%= button_to "Delete", @task.category, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+    <%= button_to "Delete", @task.category, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
 
 </div>

@@ -1,18 +1,17 @@
 <div class="h-100 w-full flex-col items-center justify-center font-sans">
   <div class="max-w-screen-xl m-4 flex-grow p-4">
-    <h1 class="text-3xl font-bold">My Tasks</h1>
-          
-<%= link_to "Tasks for Today", today_tasks_path %>
+    <h1 class="text-3xl font-bold">Tasks due today:</h1>
     
     <!-- Tasks List -->
-      <% if @tasks.present? %>
-        <% @tasks.each do |task| %>
+      <% if @tasks_today.present? %>
+        <% @tasks_today.each do |task| %>
         <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
             <h2 class="text-xl font-bold hover:text-red-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
             <p class="font-sans text-base text-gray-600">Description: <%= task.desc %></p>
 
             <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-primary" %>
         </div>
+
 
         <% end %>
       <% else %>
@@ -21,12 +20,10 @@
         <%= link_to "Add your first category", categories_path%>
       </div>
       <% end %>
-
+      
 
       
-   <%= link_to new_category_task_path(@category), class: "btn-main" do %>
-            Add Task
-        <% end %>
+
     
   </div>
 </div>
