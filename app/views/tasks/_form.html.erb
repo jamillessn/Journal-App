@@ -1,4 +1,5 @@
-<%= form_with model: @task, url: category_tasks_path(@category) do |form| %>
+<!--<%= form_with model: @task, url: category_tasks_path(@category) do |form| %>-->
+<%= form_for([@category, @task]) do |f| %>
 
 <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 
@@ -36,4 +37,5 @@
         </ul>
       </div>
     <% end %>
+<% end %>
 <% end %>

@@ -4,14 +4,30 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
   
     def index
-      @tasks = current_user.tasks
-    end
+      # @tasks = current_user.tasks
+
+      # Set @category to some meaningful value or leave it unset
+      # For example, you might want to set it to the first category or the default category
+      @category = current_user.categories.first
+      
+      # Retrieve tasks related to the @category or all tasks if @category is not set
+      @tasks = @category.present? ? @category.tasks : current_user.tasks
+        end
   
     def show
-    end
+      @task = Task.find(params[:id])
+      @category = current_user.categories.find(params[:category_id])
+      @task = @category.tasks.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+          redirect_to category_tasks_path,  alert: "Task not found." 
+      end
   
     def new
       @task = Task.new(user_id: current_user.id)
+      @category = Category.find(params[:category_id])
+      if @category.nil?
+        redirect_to category_tasks_path(@category), notice: "Category id not found."
+      end
       
     end
   
@@ -54,7 +70,7 @@ class TasksController < ApplicationController
   
     def set_task
       @task = current_user.tasks.find(params[:id])
-        @task = @category.tasks.find(params[:id])
+      # @task = @category.tasks.find(params[:id])
         rescue ActiveRecord::RecordNotFound
             redirect_to categories_path, alert: "Task not found." 
         end

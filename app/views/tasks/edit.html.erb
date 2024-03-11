@@ -1,13 +1,30 @@
 
 <div class="prose">
 <h1>Editing task</h1>
-<%= render "form", task: @task %>
+<%= form_with(model: [@category, @task]) do |f| %>
+        <div>
+          <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-gray-900"><%= @task.category.title %></h1>
+          <p class="text-center mt-0">This form updates a task.</p>
+        </div>
+        <div class="mt-6">
+            <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+            <%= f.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+        <div class="mt-6">
+            <%= f.label :desc, class: "block text-sm font-medium text-gray-700" %>
+            <%= f.text_field :desc, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+        <div class="flex justify-end pt-5 gap-2">
+            <%= link_to 'Cancel', @task.category, class: "btn-secondary" %>
+            <%= f.submit class: "cursor-pointer bg-purple-900 hover:bg-purple-700 text-white font-bold px-3 py-1 rounded-lg" %>
+        </div>
+        <% end %>
 
 <div>
-    <%= link_to "Show this task", @task %> <!-- /articles/2 -->
-    <%= link_to "Back to tasks list", tasks_path %> <!-- /articles-->
+    <%# <%= link_to "Show this task", @task %>  
+    <%= link_to "Back to tasks list", tasks_path %> 
     </div>
 
-<%= button_to "Delete", @task, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+<%= button_to "Delete", @task.category, method: :delete, data: {turbo_confirm: "Are you sure?"} %>
 
 </div>
