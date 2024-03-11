@@ -10,53 +10,52 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <!--NAV BAR -->
+     
+<!--NAV BAR -->
   <nav class="bg-white border-gray-200 dark:bg-gray-900">
-    
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <%= link_to tasks_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do %>
+        <span class="text-2xl font-semibold whitespace-nowrap text-white">Journal App</span>
+      <% end %>
+      
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-language">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <%= link_to "Tasks", tasks_path, class: "block py-2 px-3 md:p-0 text-gray-900 rounded text-white hover:text-blue" %> 
+          </li>
+          <li>
+            <!--Nav bar CATEGORIES-->
+            <%= link_to "Categories", categories_path, class: "block py-2 px-3 md:p-0 text-gray-900 rounded text-white hover:text-blue" %> 
+          </li>
+        </ul>
+    </div>
 
-      <%= link_to "Journal App", categories_path, class: "self-center text-2xl font-semibold whitespace-nowrap text-white" %> 
-      </a>
-  <div class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
+      <div class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse"> 
+          <% if user_signed_in? %> 
         
-        <% if user_signed_in? %> 
-        <!-- AVATAR -->
-          <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-              <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-          </div>
+            <!-- AVATAR -->
+            <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            </div>
 
-        <button type="button" data-dropdown-toggle="language-dropdown-menu" class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-        <div class= "pr-4"> Welcome <%= current_user.email %> </div> 
-          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"self-center font-semibold whitespace-nowrap dark:text-white" %> 
-          </button>
-        <% else %>
-          <%= button_to "Sign in", new_user_session_path, class:"self-center font-semibold whitespace-nowrap dark:text-white"  %> 
+          <div class= "pr-4"> Welcome <%= current_user.email %> </div> 
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %> 
+            
+            <% else %>
+            <%= button_to "Sign in", new_user_session_path, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  %> 
 
-        <% end %>
+            <% end %>
 
-  </div>
-  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-language">
-    <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-      <li>
-         <%= link_to "Tasks", tasks_path, class: "block py-2 px-3 md:p-0 text-gray-900 rounded text-white hover:text-blue" %> 
-      </li>
-      <li>
-        <!--Nav bar CATEGORIES-->
-        <%= link_to "Categories", categories_path, class: "block py-2 px-3 md:p-0 text-gray-900 rounded text-white hover:text-blue" %> 
-      </li>
-    </ul>
-  </div>
-  </div>
-</nav>
-
-  <!--end of NAV BAR -->
+    </div>
+    
+    </div>
+  </nav>
+<!--end of NAV BAR -->
 
 <div class="h-100 w-full mx-auto items-center justify-center bg-teal-lightest font-sans">
     <!--CSS for alerts -->
-    <% if  alert.present? %>
+    <% if alert.present? %>
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert" id="alertsContainer">
           <strong class="font-bold"><%= alert %></strong>
           
@@ -71,18 +70,11 @@
 
     <% if notice.present? %>
       <div class=" bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert" id="alertsContainer">
-          
           <strong class="font-bold"><%= notice %></strong>
-          <button onclick="removeAlerts()" class="ml-2">
-            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" >
-              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-            </span>
-          </button>
         </div>
-
      <% end %>
     
-      <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
+      <div class="h-100 flex items-center justify-center font-sans">
         <%= yield %>
       </div>
   </div>
@@ -96,8 +88,8 @@
     alertsContainer.remove();
   }
 
-  setTimeout(function() {
-        var alertsContainer = document.getElementById('alertsContainer');
-        alertsContainer.style.display = 'none';
-      }, 3000);
+  // setTimeout(function() {
+  //       var alertsContainer = document.getElementById('alertsContainer');
+  //       alertsContainer.style.display = 'none';
+  //     }, 5000);
 </script>

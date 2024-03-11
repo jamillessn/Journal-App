@@ -1,13 +1,9 @@
 class TasksController < ApplicationController
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     before_action :set_category
     before_action :set_task, only: [:show, :edit, :update, :destroy]
   
     def index
-      @tasks = @category.tasks
-    end
-
-    def all_tasks
       @tasks = current_user.tasks
     end
   
@@ -59,12 +55,11 @@ class TasksController < ApplicationController
     def set_task
       @task = current_user.tasks.find(params[:id])
         @task = @category.tasks.find(params[:id])
-        # rescue ActiveRecord::RecordNotFound
-        #     redirect_to categories_path, alert: "Task not found." 
-        # end
+        rescue ActiveRecord::RecordNotFound
+            redirect_to categories_path, alert: "Task not found." 
+        end
     end
   
     def task_params
       params.require(:task).permit(:user_id, :title, :date, :desc, :category_id)
     end
-  end

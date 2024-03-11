@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'tasks#all_tasks'
+  root to: 'tasks#index'
 
-  get '/tasks', to: 'tasks#all_tasks'
+  get '/tasks', to: 'tasks#index'
 
   resources :categories do
     resources :tasks

@@ -1,8 +1,7 @@
 
-<!---->
 <div class="h-100 w-full flex-col items-center justify-center bg-teal-lightest font-sans">
-    <h1 class="text-3xl font-bold">Categories List:</h1>
-        <p>Categories on a journal app help users organize their tasks and entries by grouping them into specific themes or topics, enabling efficient navigation and better focus. By assigning tasks to categories such as "Work," "Personal," or "Health & Wellness," users can easily manage their priorities and track their progress in various aspects of their lives.</p>
+    <div class=" max-w-screen-xl m-4 flex-grow p-4">
+        <h1 class="text-3xl font-bold">My Categories</h1>
         
             <% @categories.each do |category|%>
             <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
@@ -12,6 +11,6 @@
             <% end %>
 
             <%= link_to "Add a new category", new_category_path %> 
-            
+    </div>
                 
 </div>

@@ -1,13 +1,11 @@
-
-
 <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
 	<div class="m-4 w-full flex-grow p-4">
-        <h1 class="text-3xl font-bold">Tasks for <%= @category.title %></h1><br>
+        <h1 class="text-3xl font-bold">My Tasks</h1><br>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <% @tasks.each do |task|%>
             
-            <ul class="bg-white shadow overflow-hidden max-w-sm  mt-16">
+            <ul class="bg-white shadow overflow-hidden max-w-sm mt-5">
                  <li>
                     <div class="px-4 py-5 sm:px-6">
                         <div>
@@ -17,7 +15,7 @@
                                  <%= task.category.title %> <!-- Accessing category title -->
                             </p>
                             
-                            <h3 class="text-sm leading-6 font-medium text-gray-900"><%= task.date %></h3>
+                            <h3 class="text-sm leading-6 font-medium text-gray-900">DUE DATE: <%= task.date %></h3>
                             
                             <p class="mt-1 max-w-2xl text-sm text-gray-500"><%= task.desc %></p>
                         </div>
@@ -41,3 +39,5 @@
                 
                 </div>
 </div>
+
+
