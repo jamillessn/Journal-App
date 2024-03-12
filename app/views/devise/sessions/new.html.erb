@@ -1,24 +1,23 @@
 
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+<div class="md:mx-auto md:w-full md:max-w-sm">
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-  </div>
-
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="#" method="POST">
+    <form class="bg-white rounded px-8 pt-6 pb-8 mb-4" action="#" method="POST">
+        
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field">
+          <div class="field mb-4">
             <%= f.label :email , class:"text-sm text-gray-900 dark:text-gray" %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "flex items-center border-b py-2" %>
           </div>
 
-          <div class="field">
+          <div class="field mb-4">
             <%= f.label :password, class:"text-sm text-gray-900 dark:text-gray" %><br />
             <%= f.password_field :password, autocomplete: "current-password" %>
           </div>
 
+
           <% if devise_mapping.rememberable? %>
-            <div class="field">
+            <div class="field mb-4">
               <%= f.check_box :remember_me %>
               <%= f.label :remember_me, class: "mt-10 text-center text-sm text-gray-500" %>
             </div>
@@ -29,14 +28,26 @@
           </div>
         <% end %>
 
-        <div class="flex-md">
-         <p class="mt-10 text-center text-sm text-gray-500">
-            <%= render "devise/shared/links" %>
-        </p>
-        </div>
 
+          <div class="flex-md text-center gap-4">
+          <p class="text-sm text-gray-500">
+              <span class="text-sm text-gray-900 dark:text-gray"> Don't have an account yet? </span>
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to "Sign up", new_registration_path(resource_name), class:"text-sm text-gray-900 dark:text-gray font-semibold" %><br />
+              <% end %>
+          </p>
+
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %><br />
+          <% end %>
+          </div>
     </form>
+    
+
   </div>
 </div>
 
+
          
+
+  

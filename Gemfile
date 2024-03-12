@@ -82,3 +82,5 @@ end
 
 
 gem "tailwindcss-rails", "~> 2.3"
+
+gem 'inline_svg'
