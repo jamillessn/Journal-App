@@ -1,30 +1,29 @@
-<!--<%= form_with model: @task, url: category_tasks_path(@category) do |form| %>-->
 <%= form_for([@category, @task]) do |f| %>
 
 <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 
-    <div>
+    <div class="mt-6">
       <p>
-        <%= form.label :title %> <br>
-        <%= form.text_field :title, class: "w-full" %>
+        <%= form.label :title, class: "text-sm font-medium text-gray-700" %> <br>
+        <%= form.text_field :title, class: "mt-1 w-full rounded-md shadow-sm sm:text-sm" %>
       </p>
     </div>
 
-    <div>
-      <%= form.label "Due date" %> <br> 
-      <%= form.date_field :date, class: "w-full date-picker", required: true, pattern: '\d{4}-\d{2}-\d{2}', title: 'Date must be in yyyy-mm-dd format' %> 
+    <div class="mt-6">
+      <%= form.label "Due date", class: "text-sm font-medium text-gray-700" %> <br> 
+      <%= form.date_field :date, class: "w-full date-picker mt-1 w-full rounded-md shadow-sm sm:text-sm", required: true, pattern: '\d{4}-\d{2}-\d{2}', title: 'Date must be in yyyy-mm-dd format' %> 
       </p> 
     </div>
 
-    <div>
+    <div class="mt-6">
       <p>
-        <%= form.label "Description" %> <br>
-        <%= form.text_area :desc, class: "w-full" %>
+        <%= form.label "Description", class: "text-sm font-medium text-gray-700" %> <br>
+        <%= form.text_area :desc, class: "w-full mt-1 block w-full rounded-md shadow-sm sm:text-sm" %>
       </p>
     </div>
 
   
-  <%= form.button 'Submit', class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" %>
+  <%= form.button 'Submit', class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-5 mb-5" %>
 
 
     <% if @task.errors.any? %>

@@ -1,6 +1,6 @@
 <div class="h-100 w-full flex-col items-center justify-center font-sans">
   <div class="max-w-screen-xl m-4 flex-grow p-4">
-    <h1 class="text-3xl font-bold">My Tasks</h1>
+    <h2 class="m-0 font-bold tracking-tight text-5xl text-gray-900">My Tasks</h2>
           
 <%= link_to "Tasks for Today", today_tasks_path %>
     
@@ -8,9 +8,13 @@
       <% if @tasks.present? %>
         <% @tasks.each do |task| %>
         <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-            <h2 class="text-xl font-bold"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
-            <p class="font-sans font-bold text-sm"><%= task.date %></p>
-            <p class="font-bold text-sm text-purple-700"><%= task.category.title %></p>
+          <div class="flex">
+              <h2 class="text-2xl font-bold text-indigo-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
+              
+          </div>
+            
+            <p class="font-sans font-bold text-sm text-gray-600"><%= task.date %></p>
+            
             <p class="font-sans text-base text-gray-600 italic emerald"><%= task.desc %></p>
 
             <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-primary" %>

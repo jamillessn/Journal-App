@@ -2,7 +2,7 @@
 <div class="prose">
 <%= form_with(model: [@category, @task]) do |f| %>
         <div>
-          <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-gray-900"><%= @task.category.title %></h1>
+          <h2 class="m-0 text-center font-bold tracking-tight text-5xl text-gray-900"><%= @task.category.title %></h1>
           <p class="text-center mt-0">This form updates a task.</p>
         </div>
         <div class="mt-6">
@@ -15,7 +15,7 @@
         </div>
         <div class="flex justify-end pt-5 gap-2">
             <%= link_to 'Cancel', @task.category, class: "btn-secondary" %>
-            <%= f.submit class: "cursor-pointer bg-purple-900 hover:bg-purple-700 text-white font-bold px-3 py-1 rounded-lg" %>
+            <%= f.submit class: "cursor-pointer text-white font-bold px-3 py-1 rounded-lg" %>
         </div>
         <% end %>
 
