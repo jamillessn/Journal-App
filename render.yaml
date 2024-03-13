@@ -16,7 +16,7 @@ services:
         fromDatabase:
           name: journal-app
           property: connectionString
-      - key: RAILS_MASTER_KEY
+      - key: 4562ae061d84a134e367478940e76824
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
