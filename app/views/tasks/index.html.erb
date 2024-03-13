@@ -10,24 +10,29 @@
         <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
             <h2 class="text-xl font-bold"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
             <p class="font-sans font-bold text-sm"><%= task.date %></p>
-            <p class="font-sans text-base text-gray-600 italic text-amber-600"><%= task.desc %></p>
+            <p class="font-bold text-sm text-purple-700"><%= task.category.title %></p>
+            <p class="font-sans text-base text-gray-600 italic emerald"><%= task.desc %></p>
 
             <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-primary" %>
         </div>
-
+    
         <% end %>
       <% else %>
       <div>
-        <h4 class="text-gray-500 italic">Want to add a task? Please add a category.</h4>
-        <%= link_to "Add your first category", categories_path%>
+        <h4 class="text-gray-500 italic">Want to add a task? Please add a category first.</h4>
+        <%= link_to "Add your first category", categories_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"%>
       </div>
       <% end %>
 
+      <% if @category.present? %>
 
-      
-   <%= link_to new_category_task_path(@category), class: "btn-main" do %>
-            Add Task
-        <% end %>
-    
+      <%= button_tag(type: "submit", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") do %>
+        <%= inline_svg "svg/plus.svg", class: "h-4 w-4 inline mr-2" %>
+        <%= link_to "Add Task", new_category_task_path(@category), class: "ml-2" %>
+      <% end %>
+
+      <%end%>
+
+
   </div>
 </div>
