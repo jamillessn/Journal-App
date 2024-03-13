@@ -32,7 +32,7 @@
         <p class="font-bold"><%= pluralize(@task.errors.count, "error") %>  prohibited this post from being saved:</p>
         <ul class="list-none">
           <% @task.errors.each do |error| %>
-            <li><%= error.full_message %></li>
+            <li class="italic font-semibold"><%= error.full_message %></li>
           <% end %>
         </ul>
       </div>

@@ -1,26 +1,42 @@
-<h2>Sign up</h2>
+<div class="md:mx-auto md:w-full md:max-w-sm">
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+      <!-- Form Code starts here -->
 
-  <div>
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field mb-4">
+        <%= f.label :email, class: "mt-10 text-center text-sm text-gray-500" %><br />
+        <%= f.email_field :email, autofocus: true, class: "w-full flex items-center border-b py-2" %>
+      </div>
+
+      <div class="field mb-4">
+        <%= f.label :password, class: "mt-10 text-center text-sm text-gray-500" %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: " w-full flex items-center border-b py-2" %>
+      </div>
+
+      <div class="field mb-4">
+        <%= f.label :password_confirmation, class: "mt-10 text-center text-sm text-gray-500" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full flex items-center border-b py-2" %>
+      </div>
+
+      <div>
+        <%= f.submit "Sign up", class:"flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"%>
+      </div>
+    <% end %>
+
+    <div class = "class: hover:text-emerald-400 transition duration-300 text-sm font-semibold leading-6 text-indigo-600">
+      <%- if controller_name != 'sessions' %>
+        <%= link_to "Back to Login page", new_session_path(resource_name) %><br />
+      <% end %>
+    </div>
+
   </div>
+</div>
 
-  <div>
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
 
-  <div>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div>
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
