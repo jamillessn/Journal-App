@@ -12,11 +12,8 @@
               <h2 class="text-2xl font-bold text-indigo-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
               
           </div>
-            
             <p class="font-sans font-bold text-sm text-gray-600"><%= task.date %></p>
-            
             <p class="font-sans text-base text-gray-600 italic emerald"><%= task.desc %></p>
-
             <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-primary" %>
         </div>
     
