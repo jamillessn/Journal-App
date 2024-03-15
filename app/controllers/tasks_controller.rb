@@ -11,6 +11,7 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
       @category = current_user.categories.find(params[:category_id])
       @task = @category.tasks.find(params[:id])
+
       rescue ActiveRecord::RecordNotFound
           redirect_to category_tasks_path,  alert: "Task not found." 
       end
@@ -59,7 +60,6 @@ class TasksController < ApplicationController
     private
   
     def set_category
-      
         if params[:category_id].present?
           @category = current_user.categories.find(params[:category_id])
         end
@@ -67,12 +67,11 @@ class TasksController < ApplicationController
   
     def set_task
       @task = current_user.tasks.find(params[:id])
-      # @task = @category.tasks.find(params[:id])
         rescue ActiveRecord::RecordNotFound
             redirect_to categories_path, alert: "Task not found." 
         end
     end
   
     def task_params
-      params.require(:task).permit(:user_id, :title, :date, :desc, :category_id)
+      params.require(:task).permit(:title, :date, :desc)
     end
