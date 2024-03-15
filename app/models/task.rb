@@ -7,9 +7,6 @@ class Task < ApplicationRecord
 
     belongs_to :user
     belongs_to :category
-    
-    #@task.category 
-    #SELECT categories * FROM categories WHERE categories.id = x LIMIT 1   
  
 end
   
