@@ -1,5 +1,5 @@
 class AddCategoryIdToTasks < ActiveRecord::Migration[7.1]
   def change
-    add_reference :tasks, :category, null: true, foreign_key: true
+    add_column :tasks, :category_id, :integer
   end
 end
