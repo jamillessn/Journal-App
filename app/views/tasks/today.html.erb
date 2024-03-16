@@ -1,4 +1,4 @@
-<div class="h-100 w-full flex-col items-center justify-center font-sans">
+<div class="h-100 flex-col items-center justify-center font-sans">
   <div class="max-w-screen-xl m-4 flex-grow p-4">
     <h1 class="text-3xl font-bold">Tasks due today:</h1>
     
@@ -16,8 +16,8 @@
         <% end %>
       <% else %>
       <div>
-        <h4 class="text-gray-500 italic">Want to add a task? Please add a category first.</h4>
-        <%= link_to "Add your first category", categories_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"%>
+        <h4 class="text-gray-500 italic p-6 bg-red-200 mt-4 mb-4">Looks like there are no priority tasks for today.</h4>
+        <%= link_to "Back to All Tasks", tasks_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"%>
       </div>
       <% end %>
       
