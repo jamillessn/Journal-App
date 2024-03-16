@@ -15,7 +15,7 @@
         </div>
         <div class="flex justify-end pt-5 gap-2">
             <%= button_to "<", tasks_path, class: "bg-gray-500 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
-            <%= button_to "Delete this task", @task.category, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
+            <%= button_to "Delete this task", @task, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
             
             <%= f.submit class: "bg-indigo-500 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
         </div>

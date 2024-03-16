@@ -4,7 +4,6 @@ class TasksController < ApplicationController
   
     def index
       @tasks = current_user.tasks
-      @category = current_user.categories.first
     end
   
     def show
@@ -31,7 +30,7 @@ class TasksController < ApplicationController
       @task.category_id = @category.id
 
       if @task.save
-        redirect_to category_tasks_path(@category), notice: "Task was successfully created."
+        redirect_to tasks_path(@category), notice: "Task was successfully created."
       else
         render :new
       end
@@ -50,7 +49,7 @@ class TasksController < ApplicationController
   
     def destroy
       @task.destroy
-      redirect_to category_tasks_path(@category), notice: "Task was successfully deleted."
+      redirect_to tasks_path(@category), notice: "Task was successfully deleted."
     end
 
     def today
@@ -68,10 +67,10 @@ class TasksController < ApplicationController
     def set_task
       @task = current_user.tasks.find(params[:id])
         rescue ActiveRecord::RecordNotFound
-            redirect_to categories_path, alert: "Task not found." 
+            redirect_to tasks_path, alert: "Task not found." 
         end
     end
   
     def task_params
-      params.require(:task).permit(:title, :date, :desc)
+      params.require(:task).permit(:title, :date, :desc, :category_id)
     end

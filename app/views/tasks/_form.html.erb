@@ -8,6 +8,11 @@
     </div>
 
     <div class="mt-6">
+      <%= form.label :category_id, "Category", class: "text-sm font-medium text-gray-700" %> <br> 
+      <%= form.collection_select :category_id, Category.all, :id, :title, { prompt: "Select a category" }, { class: "w-full mt-1 rounded-md shadow-sm sm:text-sm" } %> 
+    </div>
+
+    <div class="mt-6">
       <%= form.label "Due date", class: "text-sm font-medium text-gray-700" %> <br> 
       <%= form.date_field :date, class: "w-full date-picker mt-1 w-full rounded-md shadow-sm sm:text-sm", required: true, pattern: '\d{4}-\d{2}-\d{2}', title: 'Date must be in yyyy-mm-dd format' %> 
     </div>
