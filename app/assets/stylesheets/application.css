@@ -15,6 +15,9 @@
  *= require font-awesome
  */
  
-
+.logo {
+    width: 4vh;
+    height: auto;
+}
 
  @import "font-awesome";
