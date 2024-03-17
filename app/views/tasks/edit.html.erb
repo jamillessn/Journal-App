@@ -2,8 +2,12 @@
 <div class="prose">
 <h2 class="m-0 font-bold tracking-tight text-5xl text-gray-900 mb-4">Edit Task</h2>
         <%= render "form", category: @category, task: @task %>
-        <div class="flex justify-end pt-5 gap-2">
-            <%= button_to "<", tasks_path, class: "bg-gray-500 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
+        <div class="flex space-x-4 justify-end pt-5 gap-2">
+
+            <%= link_to tasks_path, class: "bg-gray-500 hover:bg-gray-800 text-white font-bold py-2 px-2 rounded transition duration-300" do %>
+            <%= inline_svg "svg/back-arrow.svg", class: "h-4 w-4 inline" %>
+            <% end %>
+
             <%= button_to "Delete this task", @task, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
         </div>
 </div>
