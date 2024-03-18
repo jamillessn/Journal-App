@@ -1,7 +1,7 @@
 databases:
   - name: journal-app
-    databaseName: journal_app_development_mnrb
-    user: journal_app_development_mnrb_user
+    databaseName: journal_app_development
+    user: journal_app_development_user
     plan: free
 
 services:
@@ -13,9 +13,8 @@ services:
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: journal-app
-          property: connectionString
+        value: "postgres://journal_app_development_mnrb_user:LiDh7WIATXuBHTHbmPUCrf36MQwTNf4B@dpg-cns1k9i1hbls73e1o3eg-a/journal_app_development_mnrb"
+        
       - key: RAILS_MASTER_KEY
         sync: false
       - key: WEB_CONCURRENCY
