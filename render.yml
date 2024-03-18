@@ -1,7 +1,7 @@
 databases:
   - name: postgres
-    databaseName: journal_app_development
-    user: journal_app
+    databaseName: journal_app_5lpn
+    user: journal_app_5lpn_user
     plan: free
 
 services:
