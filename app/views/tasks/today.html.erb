@@ -5,14 +5,20 @@
     <!-- Tasks List -->
       <% if @tasks_today.present? %>
         <% @tasks_today.each do |task| %>
+
         <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-            <h2 class="text-xl font-bold hover:text-red-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
-            <p class="font-sans text-base text-gray-600">Description: <%= task.desc %></p>
+            <p class="font-sans font-bold text-sm bg-gray-900 text-white inline-block rounded px-2 py-1"><%= task.category.title %></p>
+            <h2 class="text-2xl font-bold text-indigo-600 hover:text-emerald-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h2>
+           <p class="font-sans font-bold text-sm text-gray-600"><%= task.date %></p>
+            <p class="font-sans text-base text-gray-600 italic emerald"><%= task.desc %></p>
 
-            <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-primary" %>
-        </div>
+        <!-- Edit Btn-->
+            <%= button_tag(type: "submit", class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center") do %>
+              <%= inline_svg "svg/edit.svg", class: "h-4 w-4" %>
+              <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "ml-2" %>
+            <% end %>
 
-
+</div>
         <% end %>
       <% else %>
       <div>

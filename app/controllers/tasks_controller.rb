@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   
     def index
       @tasks = current_user.tasks
+      @category = current_user.categories.first
     end
   
     def show

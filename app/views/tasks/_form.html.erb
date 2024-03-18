@@ -1,10 +1,8 @@
 <%= form_for([@category, @task]) do |form| %>
-
-<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full lg:max-w-lg">
     <div class="mt-6">
-        <%= form.label :title, class: "text-sm font-medium text-gray-700" %> <br>
-        <%= form.text_field :title, class: "mt-1 w-full shadow-sm sm:text-sm" %>
+      <%= form.label :title, class: "text-sm font-medium text-gray-700" %> <br>
+      <%= form.text_field :title, class: "mt-1 w-full shadow-sm sm:text-sm" %>
     </div>
 
     <div class="mt-6">
@@ -14,18 +12,15 @@
 
     <div class="mt-6">
       <%= form.label "Due date", class: "text-sm font-medium text-gray-700" %> <br> 
-      <%= form.date_field :date, class: "w-full date-picker mt-1 w-full shadow-sm sm:text-sm", required: true, pattern: '\d{4}-\d{2}-\d{2}', title: 'Date must be in yyyy-mm-dd format' %> 
+      <%= form.date_field :date, class: "w-full date-picker mt-1 w-full shadow-sm sm:text-sm", required: true, pattern: '\d{4}-\d{2}-\d{2}', title: 'Date must be in yyyy-mm-dd format', min: Date.today %> 
     </div>
 
     <div class="mt-6">
-
-        <%= form.label "Description", class: "text-sm font-medium text-gray-700" %> <br>
-        <%= form.text_area :desc, class: "w-full mt-1 block w-full shadow-sm sm:text-sm" %>
-
+      <%= form.label "Description", class: "text-sm font-medium text-gray-700" %> <br>
+      <%= form.text_area :desc, class: "w-full mt-1 block w-full shadow-sm sm:text-sm" %>
     </div>
-
   
-  <%= form.button 'Submit', class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-5 mb-5" %>
+    <%= form.button 'Submit', class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-5 mb-5" %>
 
     <% if @task.errors.any? %>
       <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
@@ -37,5 +32,5 @@
         </ul>
       </div>
     <% end %>
-
+  </div>
 <% end %>
