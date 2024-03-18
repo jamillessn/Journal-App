@@ -1,7 +1,7 @@
 databases:
   - name: journal-app
-    databaseName: journal-app
-    user: journal-app
+    databaseName: journal_app_development
+    user: journal_app_development_user
     plan: free
 
 services:
