@@ -3,23 +3,21 @@
 
 <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"> 
 
-    <div>
+    <div class="mt-6">
       <p>
-        <%= form.label :title %> <br>
-        <%= form.text_field :title, class: "w-full" %>
+        <%= form.label :title, class: "text-sm font-medium text-gray-700" %> <br>
+        <%= form.text_field :title, class: "mt-1 w-full shadow-sm sm:text-sm" %>
       </p>
     </div>
 
-    <div>
+    <div class="mt-6">
       <p>
-        <%= form.label :desc %> <br>
-        <%= form.text_area :desc, class: "w-full" %>
+        <%= form.label 'Description', class: "text-sm font-medium text-gray-700" %> <br>
+        <%= form.text_area :desc, class: "mt-1 w-full shadow-sm sm:text-sm" %>
       </p>
     </div>
 
     <%= form.button 'Submit', class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" %>
-
-
 
   </div>
   </div>

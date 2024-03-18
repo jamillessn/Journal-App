@@ -11,6 +11,11 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+      <%= javascript_include_tag "application" %>
+      <%= stylesheet_link_tag "application" %>
+      <%= turbo_include_tags %>
+      <%= csrf_meta_tags %>
   </head>
   <body style="background-color: #E7E4E6">
      

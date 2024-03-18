@@ -1,15 +1,26 @@
 <div class="h-100 w-full flex-col items-center justify-center font-sans">
   <div class="max-w-screen-xl m-4 flex-grow p-4">
-    <h2 class="m-0 font-bold tracking-tight text-5xl text-gray-900">My Tasks</h2>
-          
+    <h2 class="m-0 font-bold tracking-tight text-5xl text-gray-900 mb-6">My Tasks</h2>
 
-    
+     <% if @category.present? %> 
+
+          <%= button_tag(type: "submit", class: " bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center") do %>
+            <%= inline_svg "svg/plus.svg", class: "h-4 w-4 inline mr-2" %>
+            <%= link_to "Add Task", new_category_task_path(@category), class: "ml-2" %>
+        <% end %>
+
+          <%= button_tag(type: "submit", class: "bg-indigo-500 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded inline-flex items-center") do %>
+                <%= inline_svg "svg/book.svg", class: "h-4 w-4 inline mr-2" %>
+                <%= link_to "Tasks for Today", today_tasks_path, class: "ml-2" %>
+          <% end %>
+      <%end%>
+          
     <!-- Tasks List -->
       <% if @tasks.present? %>
         <% @tasks.each do |task| %>
         <div class="bg-white rounded shadow p-6 mt-4 mb-4 w-full lg:w-3/4 lg:max-w-lg">
           <p class="font-sans font-bold text-sm bg-gray-900 text-white inline-block rounded px-2 py-1"><%= task.category.title %></p>
-          <h2 class="text-2xl font-bold text-indigo-600 hover:text-emerald-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h3>
+          <h2 class="text-2xl font-bold text-indigo-600 hover:text-emerald-600"><%= link_to task.title, category_task_path(task.category_id, task.id) %></h2>
           
 
             <p class="font-sans font-bold text-sm text-gray-600"><%= task.date %></p>
@@ -31,18 +42,7 @@
       </div>
       <% end %>
 
-      <% if @category.present? %>
-
-      <%= button_tag(type: "submit", class: " bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center") do %>
-        <%= inline_svg "svg/plus.svg", class: "h-4 w-4 inline mr-2" %>
-        <%= link_to "Add Task", new_category_task_path(@category), class: "ml-2" %>
-     <% end %>
-
-      <%= button_tag(type: "submit", class: "bg-indigo-500 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded inline-flex items-center") do %>
-            <%= inline_svg "svg/book.svg", class: "h-4 w-4 inline mr-2" %>
-            <%= link_to "Tasks for Today", today_tasks_path, class: "ml-2" %>
-      <% end %>
-      <%end%>
+     
 
 
   </div>

@@ -17,7 +17,9 @@ class TasksController < ApplicationController
   
     def new
       @task = Task.new(user_id: current_user.id)
-      @category = Category.find(params[:category_id])
+      # @category = Category.find(params[:category_id])
+      @category = current_user.categories.find(params[:category_id])
+
       if @category.nil?
         redirect_to category_tasks_path(@category), notice: "Category id not found."
       end
