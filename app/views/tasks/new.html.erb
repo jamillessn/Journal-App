@@ -5,6 +5,8 @@
     <%= render "form", task: @task %>
 
     <div>
-        <%= link_to "Back to Tasks list", category_tasks_path %>
+        <%= link_to categories_path do %>
+        <%= inline_svg "svg/back-arrow.svg", class: "h-4 w-4 inline hover:text-indigo-600 transition duration-300" %>
+        <% end %>
     </div>
 </div>
